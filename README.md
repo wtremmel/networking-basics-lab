@@ -2,28 +2,16 @@
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+## What is this repository for? ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Lab enviroment running [Wireshark](https://wireshark.org) in Docker containers
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
+## How do I get set up? ##
+### Packages needed ###
+You need the following packages for your Linux distribution:
+* fortune (yes, really, for generating sample texts)
+* netcat or nc
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* [DE-CIX Academy](https://de-cix.net/academy), academy@de-cix.net
