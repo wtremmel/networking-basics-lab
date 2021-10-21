@@ -1,0 +1,72 @@
+---
+- name: Install DE-CIX Academy Wireshark lab
+  hosts: wiresharklab
+  remote_user: ubuntu
+  become: yes
+
+  tasks:
+    - include: ubuntu-upgrade-task.yml
+
+    - name: Clone Bitbucket repo
+      become: no
+      git:
+        repo: https://bitbucket.org/decix-academy/networking-basics-lab.git
+        dest: Networking-Basics
+        accept_hostkey: yes
+        version: master
+
+    - name: Uninstall old docker versions
+      become: yes
+      apt:
+        pkg:
+        - docker
+        - docker-engine
+        - docker.io
+        - containerd
+        - runc
+        state: absent
+
+    - name: Setup apt for repository
+      become: yes
+      apt:
+        pkg:
+        - net-tools
+        - traceroute
+        - apt-transport-https
+        - certbot
+        - python3-certbot-nginx
+        - nginx
+        - ca-certificates
+        - curl
+        - gnupg
+        - lsb-release
+        - iptables-persistent
+        state: present
+
+    - name: add Docker GPG key
+      become: yes
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: create repository
+      become: yes
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu/ focal stable
+        state: present
+
+    - name: install docker and other packages
+      become: yes
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose
+
+    - name: add ansible user to the docker group
+      become: yes
+      user:
+        name: ubuntu
+        groups: docker
+        append: yes

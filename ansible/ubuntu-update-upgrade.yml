@@ -1,0 +1,7 @@
+---
+- name: update ubuntu hosts
+  hosts: test
+  remote_user: ansible
+
+  tasks:
+    - include: ubuntu-upgrade-task.yml

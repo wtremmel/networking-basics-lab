@@ -1,0 +1,16 @@
+          - name: apt update and upgrade
+            become: true
+            apt:
+                    autoclean: yes
+                    autoremove: yes
+                    update_cache: yes
+                    force_apt_get: yes
+                    upgrade: "safe"
+            register: packages_upgraded
+
+          - debug: var=packages_upgraded.stdout_lines
+          - debug: var=packages_upgraded.stderr_lines
+
+          - name: Reboot system if required
+            command: shutdown -r now 'Rebooting to complete system upgrade'
+              removes=/var/run/reboot-required
