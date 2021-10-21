@@ -6,7 +6,9 @@
 
 ## How do I get set up? ##
 
-This has been tested using CentOS7. Ubuntu will be tested as well in the future.
+This has been tested using CentOS7 and Ubuntu. For remote setup there is also an ansible playbook incluced.
+
+You need 500MB RAM per seat. So for 20 Seats, 10GB RAM is recommended.
 
 ### Docker ###
 
