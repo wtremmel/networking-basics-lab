@@ -17,13 +17,13 @@ EOF
 if ($opt_N) {
   my $nodestr = sprintf "%02d",$opt_N;
   my $targetip = "10.99.1.1$nodestr";
-  `(fortune | head -1;sleep 1) | nc -u $targetip 7`;
+  `(fortune | head -1;sleep 1) | nc -w 1 -u $targetip 7`;
   exit;
 }
 
 for ($i = 1; $i <= $opt_n; $i++) {
   my $nodestr = sprintf "%02d",$i;
   my $targetip = "10.99.1.1$nodestr";
-  `(fortune | head -1;sleep 1) | nc -u $targetip 7`;
+  `(fortune | head -1;sleep 1) | nc -w 1 -u $targetip 7`;
 }
 
