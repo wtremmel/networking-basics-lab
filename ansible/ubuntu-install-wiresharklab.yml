@@ -5,6 +5,10 @@
   become: yes
 
   tasks:
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: wiresharklab
+
     - include: ubuntu-upgrade-task.yml
 
     - name: Clone Bitbucket repo
@@ -33,6 +37,7 @@
         - net-tools
         - traceroute
         - apt-transport-https
+        - fortune-mod
         - certbot
         - python3-certbot-nginx
         - nginx
