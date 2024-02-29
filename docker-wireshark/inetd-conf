@@ -1,45 +1,26 @@
-# /etc/inetd.conf:  see inetd(8) for further informations.
 #
-# Internet superserver configuration database
+# Internet server configuration database
 #
-#
-# Lines starting with "#:LABEL:" or "#<off>#" should not
-# be changed unless you know what you are doing!
 #
 # If you want to disable an entry so it isn't touched during
 # package updates just comment it out with a single '#' character.
 #
-# Packages should modify this file by using update-inetd(8)
-#
+# If you make changes to this file, either reboot your machine or
+# send the inetd process a HUP signal:
+# Do a "ps x" as root and look up the pid of inetd. Then do a
+#     kill -HUP <pid of inetd>
+# inetd will re-read this file whenever it gets that signal.
 # <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>
 #
 #:INTERNAL: Internal services
-discard                stream  tcp4     nowait  root    internal
-discard                dgram   udp4     wait    root    internal
-discard                stream  tcp6     nowait  root    internal
-discard                dgram   udp6     wait    root    internal
-daytime                stream  tcp4     nowait  root    internal
-daytime                stream  tcp6     nowait  root    internal
-time           stream  tcp4     nowait  root    internal
-time           stream  tcp6     nowait  root    internal
-echo                stream  tcp4     nowait  root    internal
-echo                dgram   udp4     wait    root    internal
-echo                stream  tcp6     nowait  root    internal
-echo                dgram   udp6     wait    root    internal
-
-#:STANDARD: These are standard services.
-
-#:BSD: Shell, login, exec and talk are BSD protocols.
-
-#:MAIL: Mail, news and uucp services.
-
-#:INFO: Info services
-
-#:BOOT: TFTP service is provided primarily for booting.  Most sites
-#       run this only on machines acting as "boot servers."
-
-#:RPC: RPC based services
-
-#:HAM-RADIO: amateur-radio services
-
-#:OTHER: Other services
+# It is generally considered safer to keep these off.
+echo     stream  tcp  nowait  root  internal
+echo     dgram   udp  wait  root  internal
+discard  stream  tcp  nowait  root  internal
+discard  dgram   udp  wait  root  internal
+daytime  stream  tcp  nowait  root  internal
+daytime  dgram   udp  wait  root  internal
+chargen  stream  tcp  nowait  root  internal
+chargen  dgram   udp  wait  root  internal
+time     stream  tcp  nowait  root  internal
+time     dgram   udp  wait  root  internal

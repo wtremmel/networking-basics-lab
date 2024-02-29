@@ -21,7 +21,7 @@ services:
     cap_add:
             - NET_ADMIN
     ports:
-      - "9001:3001"
+      - "9001:3000"
     environment:
       - PUID=1000
       - PGID=1000
@@ -44,7 +44,7 @@ services:
     cap_add:
             - NET_ADMIN
     ports:
-      - "9002:3001"
+      - "9002:3000"
     environment:
       - PUID=1000
       - PGID=1000
