@@ -21,7 +21,11 @@ services:
     cap_add:
             - NET_ADMIN
     ports:
-      - "9001:14500"
+      - "9001:3001"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
     networks:
       admin:
         priority: 1000
@@ -40,7 +44,11 @@ services:
     cap_add:
             - NET_ADMIN
     ports:
-      - "9002:14500"
+      - "9002:3001"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
     networks:
       admin:
         priority: 1000
