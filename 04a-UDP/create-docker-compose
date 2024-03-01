@@ -50,7 +50,7 @@ for ($i = 1; $i <= $opt_n; $i++) {
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - config/r$nodestr:/config
+      - ./config/r$nodestr:/config
     networks:
       admin:
         priority: 1000
