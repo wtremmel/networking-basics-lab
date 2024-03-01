@@ -10,16 +10,15 @@ services:
       - ./config/distributor:/etc/distributor
     networks:
       admin:
-
-  r01:      
+  r01:
     image: wtremmel/wireshark:latest
     hostname: r01
     container_name: r01
     sysctls:
-                net.ipv6.conf.all.disable_ipv6: 0
-                net.ipv6.conf.all.forwarding: 1
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.all.forwarding: 1
     cap_add:
-            - NET_ADMIN
+      - NET_ADMIN
     ports:
       - "9001:3000"
     environment:
@@ -34,15 +33,15 @@ services:
         ipv4_address: 10.99.1.101
         ipv6_address: 2001:db8:500:99::101
 
-  r02:      
+  r02:
     image: wtremmel/wireshark:latest
     hostname: r02
     container_name: r02
     sysctls:
-                net.ipv6.conf.all.disable_ipv6: 0
-                net.ipv6.conf.all.forwarding: 1
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.all.forwarding: 1
     cap_add:
-            - NET_ADMIN
+      - NET_ADMIN
     ports:
       - "9002:3000"
     environment:
@@ -56,6 +55,75 @@ services:
         priority: 100
         ipv4_address: 10.99.1.102
         ipv6_address: 2001:db8:500:99::102
+
+  r03:
+    image: wtremmel/wireshark:latest
+    hostname: r03
+    container_name: r03
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.all.forwarding: 1
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "9003:3000"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    networks:
+      admin:
+        priority: 1000
+      testnet:
+        priority: 100
+        ipv4_address: 10.99.1.103
+        ipv6_address: 2001:db8:500:99::103
+
+  r04:
+    image: wtremmel/wireshark:latest
+    hostname: r04
+    container_name: r04
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.all.forwarding: 1
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "9004:3000"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    networks:
+      admin:
+        priority: 1000
+      testnet:
+        priority: 100
+        ipv4_address: 10.99.1.104
+        ipv6_address: 2001:db8:500:99::104
+
+  r05:
+    image: wtremmel/wireshark:latest
+    hostname: r05
+    container_name: r05
+    sysctls:
+      net.ipv6.conf.all.disable_ipv6: 0
+      net.ipv6.conf.all.forwarding: 1
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "9005:3000"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    networks:
+      admin:
+        priority: 1000
+      testnet:
+        priority: 100
+        ipv4_address: 10.99.1.105
+        ipv6_address: 2001:db8:500:99::105
 
 networks:
   admin:

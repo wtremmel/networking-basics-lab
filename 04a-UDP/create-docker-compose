@@ -44,7 +44,13 @@ for ($i = 1; $i <= $opt_n; $i++) {
     cap_add:
       - NET_ADMIN
     ports:
-      - "90$nodestr:14500"
+      - "90$nodestr:3000"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - config/r$nodestr:/config
     networks:
       admin:
         priority: 1000
@@ -54,6 +60,7 @@ for ($i = 1; $i <= $opt_n; $i++) {
         ipv6_address: 2001:db8:500:99::1$nodestr
 
 EOF
+    system("mkdir -p config/r$nodestr");
 }
 
 print <<EOF;
