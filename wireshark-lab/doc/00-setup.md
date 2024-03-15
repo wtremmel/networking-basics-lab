@@ -64,6 +64,11 @@ Wireshark seats for participants are now via https on port 7001++
   - you now see the complete TCP conversation only
     - check the search line
 
+For IPv6:
+- you have to add a NAT rule, it is in the file
+- execute `./05-v6-http -n X` 
+- note that the filter `http` works for v4 and v6
+
 #### HTTPS
 
 - https is encrypted
