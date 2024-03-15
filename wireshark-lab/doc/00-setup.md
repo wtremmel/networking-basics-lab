@@ -47,5 +47,48 @@ Wireshark seats for participants are now via https on port 7001++
   - now change it to `!ipv6`
   - logical expressions are possible
 
-### Web / HTTP
+### Web
+
+#### HTTP
+
+- ask everyone to capture on interface `eth0`
+- on the host, run `./05-v4-http -n X`
+- ask everyone to stop capturing using the red square
+- now, how to find something meaningful?
+  - enter `http` into the search bar
+  - you only see the http connection
+  - right-click on the second line
+    - follow -> TCP Stream
+    - you see the text in a separate window
+    - click on close
+  - you now see the complete TCP conversation only
+    - check the search line
+
+#### HTTPS
+
+- https is encrypted
+- lets have a look
+- start capturing on `eth0`
+- on the host run `./06-v4-https -n X`
+- ask to search for "http"
+  - no result
+- since it is https, we must search for "tls" (no, its not logical)
+- do not forget to clear the "http" filter
+- right click on the first one, choose "follow TCP stream"
+- analyze the client hello packet
+  - server name is unencrypted
+- to see more we need the key for decryption
+- this can be get from the browser or via man in the middle attack
+- fortunately, you can setup some browsers to export the key and feed this into wireshark
+  - go to "edit"->"preferences"
+  - "protocols"->"TLS" (lots of scrolling)
+  - click on the "browse" button at "Pre-Master-Secret log filename"
+  - go up one directory (green arrow top right)
+  - double click on "tlskeys"
+  - click on ok
+- notice anything changed?
+- protocol now shows "http2"
+- right click on one of the http2 lines
+  - "follow"->"http2 stream"
+
 
