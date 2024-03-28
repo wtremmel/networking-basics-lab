@@ -47,6 +47,16 @@ Wireshark seats for participants are now via https on port 7001++
   - now change it to `!ipv6`
   - logical expressions are possible
 
+### TCPv4
+- again, ask the participants to monitor *eth1*
+- on the host, run `./00-v4-tcp-echo-connection -n X`
+- explain what can be seen
+
+### TCPv6
+- ask participants to click on *restart current capture*
+- on the host, run `./00-v6-tcp-echo-connection -n X`
+- explain that it is all the same as in v4
+
 ### Web
 
 #### HTTP
