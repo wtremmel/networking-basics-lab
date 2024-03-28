@@ -14,15 +14,16 @@ EOF
   exit;
 }
 
-if ($opt_N) {
-  my $nodestr = sprintf "%02d",$opt_N;
-  system("docker container exec r$nodestr sh -c 'vtysh < /etc/frr/solution-02b-multihomed'");
-  exit;
-}
 
 for ($i = 1; $i <= $opt_n; $i++) {
   my $nodestr = sprintf "%02d",$i;
   my $targetip = "2001:db8:500:99::1$nodestr";
-  `(fortune | head -1;sleep 1) | nc -u $targetip 7`;
+
+  $| = 1;
+  open(F,"|nc -N $targetip 7");
+  my $text = `fortune`;
+  print F $text;
+  sleep 1;
+  close F;
 }
 
