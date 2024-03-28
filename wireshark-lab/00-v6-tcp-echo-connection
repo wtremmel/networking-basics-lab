@@ -20,10 +20,9 @@ for ($i = 1; $i <= $opt_n; $i++) {
   my $targetip = "2001:db8:500:99::1$nodestr";
 
   $| = 1;
-  open(F,"|nc -N $targetip 7");
+  open(F,"|nc -q 1 $targetip 7");
   my $text = `fortune`;
   print F $text;
-  sleep 1;
   close F;
 }
 
