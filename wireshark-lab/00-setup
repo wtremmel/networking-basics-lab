@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+#
+
+
+ip6tables -t nat -A POSTROUTING -s 2001:db8:1::/64 -d ::/0 -j MASQUERADE
+
+
