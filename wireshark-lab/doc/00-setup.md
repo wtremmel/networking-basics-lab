@@ -53,6 +53,34 @@ To change panes:
 
 There are a lot of options. Feel free to play around later.
 
+#### Main Toolbar
+
+The main toolbar contains buttons for the most used functions:
+
+- Four buttons to control capturing of packets
+- Four buttons to work with capture files
+- Some buttons to find packets and to jump around
+- A button to toggle auto scroll when life capturing
+- A button to toggle colorization of packets
+- Four buttons to control size of the panes
+
+### Filter Toolbar
+
+The filter toolbar controls what is visible (not what is captured!). Note that capturing continues unless you explicitly stop it.
+
+Start typing in a filter:
+
+- Try "ip". See that you get suggestions on how to complet
+- Now try "arp"
+
+See that the filter toolbar changes color once a filter is syntactically correct?
+
+On the very right is a small down-arrow. Click it. The filter toolbar remembers past filters.
+
+See the small "x" on the right? Click it. It clears the filter.
+
+
+
 ## Experiments
 
 ### UDP v4
