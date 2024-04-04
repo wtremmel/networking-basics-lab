@@ -16,6 +16,43 @@ Wireshark seats for participants are now via https on port 7001++
 
 - Restarting a container: `docker container restart rXX`, participant then reloads the browser window
 
+## Introduction to Wirkeshark
+
+### Capture Window
+
+When Wireshark opens, we start with the "Capture" window. Here we can select from which source packets are to be caputured. For the most experiments we will select the `eth1` interface. Please wait until I tell you from which interface we capture.
+
+You can also enter a *capture filter* on top. Only packets matching this filter will be captured (this is different to a display filter (we learn about this later) which works on already captured packets).
+
+You can capture on:
+
+- physical interfaces (like `eth0` or `eth1`)
+- remote systems using a number of helpers
+- you can also read in a capture from a file (using File-Open)
+
+Now double click on `eth1`.
+
+### Main Window
+
+The main window has the following sections:
+
+- main toolbar
+- filter toolbar
+- packet list
+- packet details
+- packet bytes
+- packet diagram (greyed out)
+- status bar (bottom)
+
+To change panes:
+
+- Edit -> Preferences -> Appearance -> Layout
+  - we have space for three panes
+  - we have four different panes
+  - select what you want to see
+
+There are a lot of options. Feel free to play around later.
+
 ## Experiments
 
 ### UDP v4
