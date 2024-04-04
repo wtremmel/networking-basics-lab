@@ -57,6 +57,11 @@ Wireshark seats for participants are now via https on port 7001++
 - on the host, run `./00-v6-tcp-echo-connection -n X`
 - explain that it is all the same as in v4
 
+### Todo
+- icmp
+  - ping
+  - traceroute
+
 ### Web
 
 #### HTTP
