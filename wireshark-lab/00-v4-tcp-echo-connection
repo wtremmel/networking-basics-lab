@@ -4,16 +4,30 @@
 
 use Getopt::Std;
 
+getopts('N:n:ha');
 
-getopts('N:n:h');
-
-if ($opt_h || !($opt_n || $opt_N)) {
+if ($opt_h || !($opt_a || $opt_n || $opt_N)){
   print <<EOF;
-Usage: $0 -n <number of instances>
+Usage: $0 (-a | -n <number of instances> | -N <instance number> )
 EOF
   exit;
 }
 
+if ($opt_a) {
+  $opt_n = $ENV{Participants};
+}
+
+if ($opt_N) {
+  my $nodestr = sprintf "%02d",$opt_N;
+  my $targetip = "10.99.1.1$nodestr";
+
+  $| = 1;
+  open(F,"|nc -q 1 $targetip 7");
+  my $text = `fortune`;
+  print F $text;
+  close F;
+  exit;
+}
 
 for ($i = 1; $i <= $opt_n; $i++) {
   my $nodestr = sprintf "%02d",$i;

@@ -4,14 +4,17 @@
 
 use Getopt::Std;
 
+getopts('N:n:ha');
 
-getopts('N:n:h');
-
-if ($opt_h || !($opt_n || $opt_N)) {
+if ($opt_h || !($opt_a || $opt_n || $opt_N)){
   print <<EOF;
-Usage: $0 -n <number of instances>
+Usage: $0 (-a | -n <number of instances> | -N <instance number> )
 EOF
   exit;
+}
+
+if ($opt_a) {
+  $opt_n = $ENV{Participants};
 }
 
 
