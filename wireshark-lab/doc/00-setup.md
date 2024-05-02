@@ -37,6 +37,8 @@ You can capture on:
 
 Now double click on `eth1`.
 
+Presenter: Wait until everyone is connected then run `./00-v4-send-udp-echo-packet -a`
+
 ### Main Window
 
 The main window has the following sections:
@@ -46,7 +48,7 @@ The main window has the following sections:
 - packet list
 - packet details
 - packet bytes
-- packet diagram (greyed out)
+- packet diagram (not visible per default)
 - status bar (bottom)
 
 To change panes:
@@ -55,6 +57,7 @@ To change panes:
   - we have space for three panes
   - we have four different panes
   - select what you want to see
+  - now select "Packet Diagram" for Pane 3 and click "ok"
 
 There are a lot of options. Feel free to play around later.
 
@@ -67,7 +70,7 @@ The main toolbar contains buttons for the most used functions:
 - Some buttons to find packets and to jump around
 - A button to toggle auto scroll when life capturing
 - A button to toggle colorization of packets
-- Four buttons to control size of the panes
+- Four buttons to control size of text and columns
 
 ### Filter Toolbar
 
@@ -75,14 +78,14 @@ The filter toolbar controls what is visible (not what is captured!). Note that c
 
 Start typing in a filter:
 
-- Try "ip". See that you get suggestions on how to complet
+- Try "ip". See that you get suggestions on how to complete
 - Now try "arp"
 
 See that the filter toolbar changes color once a filter is syntactically correct?
 
 On the very right is a small down-arrow. Click it. The filter toolbar remembers past filters.
 
-See the small "x" on the right? Click it. It clears the filter.
+See the small "x" on the right? Click it. It clears the filter. Now click on it.
 
 
 
