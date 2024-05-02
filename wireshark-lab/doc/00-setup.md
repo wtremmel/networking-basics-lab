@@ -7,6 +7,7 @@
 
 ## Setup
 
+- `cd networking-basics-lab/wireshark-lab`
 - use `make` to create the client directories and docker compose file
 - use `docker compose up` to start the containers
 
@@ -17,6 +18,10 @@ Wireshark seats for participants are now via https on port 7001++
 - Restarting a container: `docker container restart rXX`, participant then reloads the browser window
 
 ## Introduction to Wirkeshark
+
+### Connecting with your browser
+
+All modern browsers should work. Please check that no "Zoom" is enabled - this makes the fonts look uggly. 
 
 ### Capture Window
 
