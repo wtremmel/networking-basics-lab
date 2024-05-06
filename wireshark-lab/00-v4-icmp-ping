@@ -1,0 +1,32 @@
+#!/usr/bin/perl
+#
+
+
+use Getopt::Std;
+
+getopts('aN:n:h');
+
+if ($opt_h || !($opt_a || $opt_n || $opt_N)){
+  print <<EOF;
+Usage: $0 (-a | -n <number of instances> | -N <instance number> )
+EOF
+  exit;
+}
+
+if ($opt_a) {
+  $opt_n = $ENV{Participants};
+}
+
+if ($opt_N) {
+  my $nodestr = sprintf "%02d",$opt_N;
+  my $targetip = "10.99.1.1$nodestr";
+  `ping -q -c 1 $targetip`;
+  exit;
+}
+
+for ($i = 1; $i <= $opt_n; $i++) {
+  my $nodestr = sprintf "%02d",$i;
+  my $targetip = "10.99.1.1$nodestr";
+  `ping -q -c 1 $targetip`;
+}
+
