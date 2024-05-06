@@ -142,8 +142,11 @@ See the small "x" on the right? Click it. It clears the filter. Now click on it.
 ### Port unreach in TCP
 
 - ask participants to click on *restart current capture*
-- ask to filter for `tcp or icmp`
+- ask to filter for `tcp or icmp or icmpv6`
 
+### Ping
+- for filtering use `icmp or icmpv6`
+- scripts `./00-v6-icmp-ping -a` and same for v4
 
 ### Todo
 - icmp
