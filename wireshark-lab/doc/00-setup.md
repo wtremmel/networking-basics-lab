@@ -130,6 +130,21 @@ See the small "x" on the right? Click it. It clears the filter. Now click on it.
 - on the host, run `./00-v6-tcp-echo-connection -n X`
 - explain that it is all the same as in v4
 
+### ICMPv4 and ICMPv6 UDP
+
+- ask participants to click on *restart current capture*
+- ask to filter for `ip or ipv6` to filter out ARP messages
+- on the host, run `./00-v4-icmp-portunreach -a`
+- point and explain ICMP message
+- on the host, run `./00-v6-icmp-portunreach -a`
+- point out differences, ICMP codes
+
+### Port unreach in TCP
+
+- ask participants to click on *restart current capture*
+- ask to filter for `tcp or icmp`
+
+
 ### Todo
 - icmp
   - ping
