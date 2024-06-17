@@ -1,7 +1,24 @@
-#!/usr/bin/bash
+#!/usr/bin/perl
 #
 
+use Getopt::Std;
 
-ip6tables -t nat -A POSTROUTING -s 2001:db8:1::/64 -d ::/0 -j MASQUERADE
+getopts('aN:n:h');
 
+if ($opt_h || !($opt_a || $opt_n || $opt_N)){
+  print <<EOF;
+Usage: $0 (-a | -n <number of instances> | -N <instance number> )
+EOF
+  exit;
+}
 
+if ($opt_a) {
+  $opt_n = $ENV{Participants};
+}
+
+# ip6tables -t nat -A POSTROUTING -s 2001:db8:1::/64 -d ::/0 -j MASQUERADE
+
+for ($i = 1; $i <= $opt_n; $i++) {
+  my $nodestr = sprintf "%02d",$i;
+  `cp *.pcap config/r$nodestr`;
+}
