@@ -1,0 +1,33 @@
+#!/usr/bin/perl
+#
+
+
+use Getopt::Std;
+
+getopts('N:n:ha');
+
+if ($opt_h || !($opt_a || $opt_n || $opt_N)){
+  print <<EOF;
+Usage: $0 (-a | -n <number of instances> | -N <instance number> )
+EOF
+  exit;
+}
+
+if ($opt_a) {
+  $opt_n = $ENV{Participants};
+}
+
+
+if ($opt_N) {
+  my $nodestr = sprintf "%02d",$opt_N;
+  my $targetip = "2001:db8:500:99::1$nodestr";
+  `(base64 /dev/urandom | head -c 2000) | nc -w 1 -u $targetip 7`;
+  exit;
+}
+
+for ($i = 1; $i <= $opt_n; $i++) {
+  my $nodestr = sprintf "%02d",$i;
+  my $targetip = "2001:db8:500:99::1$nodestr";
+  `(base64 /dev/urandom | head -c 2000) | nc -w 1 -u $targetip 7`;
+}
+
