@@ -3,7 +3,7 @@ FROM        linuxserver/wireshark
 LABEL maintainer="wolfgang.tremmel@de-cix.net"
 
 # Trigger rebuild
-ENV         UPDATED_AT 2021-04-19
+ENV         UPDATED_AT=2025-07-08
 
 # Install netcat and net-tools
 RUN		apk update \
