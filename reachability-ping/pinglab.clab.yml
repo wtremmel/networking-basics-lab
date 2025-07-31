@@ -1,0 +1,72 @@
+name: Pinglab
+
+topology:
+  groups:
+    infrastructure:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - apk add bash
+    students:
+      kind: linux
+      image: alpine:latest
+      exec:
+        - apk add openrc openssh bash curl
+        - ash -c 'echo -e "lassmichrein\nlassmichrein"|passwd'
+        - ash -c 'echo "PermitRootLogin yes" >> /etc/ssh/sshd_config'
+        - rc-status
+        - touch /run/openrc/softlevel
+        - rc-service sshd start
+
+  nodes:
+    n1:
+      group: students
+      ports:
+        - 2001:22
+      exec:
+        - ip address add 192.0.2.1/24 dev eth1
+        - ip address add 2001:7f8::0:1/64 dev eth1
+        - route add -net 198.51.100.0 netmask 255.255.255.0 gw 192.0.2.254
+    n2:
+      group: students
+      ports:
+        - 2002:22
+      exec:
+        - ip address add 192.0.2.2/24 dev eth1
+        - ip address add 2001:7f8::0:2/64 dev eth1
+        - route add -net 198.51.100.0 netmask 255.255.255.0 gw 192.0.2.254
+    n3:
+      group: students
+      ports:
+        - 2003:22
+      exec:
+        - ip address add 192.0.2.3/24 dev eth1
+        - ip address add 2001:7f8::0:3/64 dev eth1
+        - route add -net 198.51.100.0 netmask 255.255.255.0 gw 192.0.2.254
+
+    firewall:
+      group: infrastructure
+      exec:
+        - ip address add 192.0.2.254/24 dev eth1
+        - ip address add 198.51.100.254/24 dev eth2
+        - apk add iptables
+
+    target:
+      group: infrastructure
+      exec:
+        - ip address add 198.51.100.1/24 dev eth1
+        - route add -net 192.0.2.0 netmask 255.255.255.0 gw 198.51.100.254
+        - apk add lighttpd
+        - ash -c 'echo "<h1>Lighttpd on Alpine Linux is working!</h1>" > /var/www/localhost/htdocs/index.html'
+        - lighttpd -f /etc/lighttpd/lighttpd.conf
+
+    lan:
+      kind: bridge
+
+  links:
+    - endpoints: ["n1:eth1","lan:port1"]
+    - endpoints: ["n2:eth1","lan:port2"]
+    - endpoints: ["n3:eth1","lan:port3"]
+
+    - endpoints: ["firewall:eth1", "lan:port99"]
+    - endpoints: ["firewall:eth2", "target:eth1"]
